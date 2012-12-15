@@ -10,8 +10,8 @@ require 'support/setup_ar_and_schema'
 
 RSpec.configure do |config|
 
-  Untied::Consumer::Sync.configure do |config|
-    config.model_data = "spec/support/model_data.yml"
+  Untied::Consumer::Sync.configure do |c|
+    c.model_data = "spec/support/model_data.yml"
   end
 
   config.treat_symbols_as_metadata_keys_with_true_values = true
