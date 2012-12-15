@@ -29,7 +29,7 @@ module Untied
         # Retorna o modelo recém criado.
         def create_zombie(id)
           zombie = @model.new(@model_data['mappings']['id'] => id)
-          zombie.save(validate: false)
+          zombie.save(:validate => false)
 
           zombie
         end

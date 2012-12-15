@@ -51,7 +51,7 @@ module Untied::Consumer::Sync
 
         context "when user exists" do
           before do
-            User.new(my_id: user_payload['my_id']).save(validate: false)
+            User.new(:my_id => user_payload['my_id']).save(:validate => false)
           end
 
           it 'should update zombie user' do
@@ -72,7 +72,7 @@ module Untied::Consumer::Sync
 
       context 'when user exists' do
         before do
-          User.new(my_id: user_payload['my_id']).save(validate: false)
+          User.new(:my_id => user_payload['my_id']).save(:validate => false)
         end
 
         it 'should update user on database' do
@@ -85,7 +85,7 @@ module Untied::Consumer::Sync
     describe '#destroy_model' do
       context 'when user exists' do
         before do
-          User.new(my_id: user_payload['my_id']).save(validate: false)
+          User.new(:my_id => user_payload['my_id']).save(:validate => false)
         end
 
         it 'should delete from database' do

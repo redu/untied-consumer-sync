@@ -11,7 +11,7 @@ module Untied::Consumer::Sync
     context "#create_proxy" do
       context "with a complete (valid) User" do
         let(:user) { { 'id' => 1, 'login' => 'sexy_jedi_3000',
-                       'name' => 'Luke Skywalker', thingy: false } }
+                       'name' => 'Luke Skywalker', :thingy => false } }
 
         it 'should return true' do
           subject.create_proxy("user", user).should == true
