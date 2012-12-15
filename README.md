@@ -2,6 +2,10 @@
 
 Process the messages comming from your [Untied::Publisher](https://github.com/redu/untied-publisher) and syncs it directly to the database.
 
+**Build status**
+
+[![Build Status](https://travis-ci.org/redu/untied-consumer-sync.png)](https://travis-ci.org/redu/untied-consumer-sync)
+
 ## Instalation
 
 Add this line to your Gemfile:
