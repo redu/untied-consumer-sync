@@ -21,6 +21,11 @@ module Untied
           raise "Configure where your yml file is."
         end
       end
+
+      # Loads model data structure
+      def self.model_data
+        @model_data ||= YAML.load_file(Sync.config.model_data)
+      end
     end
   end
 end

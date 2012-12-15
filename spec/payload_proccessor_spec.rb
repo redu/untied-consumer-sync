@@ -3,11 +3,7 @@ require 'spec_helper'
 module Untied::Consumer::Sync
   describe PayloadProccessor do
     let(:subject) { PayloadProccessor.new(config) }
-    let(:config) do
-      { 'attributes' => ['login', 'name', 'id'],
-        'mappings' => { 'id' => 'my_id' },
-        'name' => 'User' }
-    end
+    let(:config) { Untied::Consumer::Sync.model_data['User'] }
 
     describe 'proccess' do
       let(:payload) {{"id"=> 22, 'login' => 'sexy_jedi_3000',

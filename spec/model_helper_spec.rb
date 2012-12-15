@@ -5,11 +5,7 @@ module Untied::Consumer::Sync
     let(:subject) { ModelHelper.new(user_config) }
     let(:user_payload) { { 'my_id'=> 22, 'login' => 'sexy_jedi_3000',
                    'name' => 'Luke Skywalker' } }
-    let(:user_config) do
-      { 'attributes' => ['login', 'name', 'id'],
-        'mappings' => { 'id' => 'my_id' },
-        'name' => 'User' }
-    end
+    let(:user_config) { Untied::Consumer::Sync.model_data['User'] }
 
     after do
       User.delete_all

@@ -1,5 +1,4 @@
 require 'untied-consumer'
-require 'yaml'
 
 module Untied
   module Consumer
@@ -45,7 +44,7 @@ module Untied
         #
         # Retorna um Hash com as configurações dos modelos
         def config
-          YAML.load_file(Sync.config.model_data)
+          Sync.model_data
         end
 
         protected
