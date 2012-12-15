@@ -1,0 +1,18 @@
+User:
+  attributes:
+    - login
+    - name
+    - id
+  mappings:
+    id:  my_id
+  name: User
+
+Toy:
+  attributes:
+    - user_id
+    - id
+  mappings:
+    id: my_id
+  check_for:
+    User: user_id
+  name: Toy
