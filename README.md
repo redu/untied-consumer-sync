@@ -4,7 +4,7 @@ Process the messages comming from your [Untied::Publisher](https://github.com/re
 
 **Build status**
 
-[![Build Status](https://travis-ci.org/redu/untied-consumer-sync.png)](https://travis-ci.org/redu/untied-consumer-sync)
+[![Build Status](https://travis-ci.org/redu/untied-consumer-sync.png?branch=master)](https://travis-ci.org/redu/untied-consumer-sync)
 
 ## Instalation
 
