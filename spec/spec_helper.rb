@@ -12,6 +12,7 @@ RSpec.configure do |config|
 
   Untied::Consumer::Sync.configure do |c|
     c.model_data = "spec/support/model_data.yml"
+    c.service_name = "my_service"
   end
 
   config.treat_symbols_as_metadata_keys_with_true_values = true
