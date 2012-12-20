@@ -45,6 +45,8 @@ Say to `Untied::Consumer::Sync` where the file is:
 Untied::Consumer::Sync.configure do |config|
   config.model_data = "#{Rails.root}/config/model_data.yml"
 end
+# Sets ActiveRecord as backend
+Untied::Consumer::Sync.backend = :active_record
 ```
 
 Inform the attributes:
@@ -68,6 +70,7 @@ To know more about the options you can add to this yml, checkout this [wiki arti
 ## What need to be done?
 
 - Test Zombificator::ActsAsZombie
+- Test Backend::Base
 - Update only the changed attributes in `after_update`
 - Limit which callbacks should be listened per model
 - Snake case on the yml

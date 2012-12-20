@@ -15,6 +15,7 @@ RSpec.configure do |config|
     c.model_data = "spec/support/model_data.yml"
     c.service_name = "my_service"
   end
+  Untied::Consumer::Sync.backend = :active_record
 
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true

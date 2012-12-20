@@ -1,10 +1,10 @@
 require "untied-consumer-sync/version"
 require "untied-consumer-sync/config"
 require "untied-consumer-sync/payload_proccessor"
-require "untied-consumer-sync/model_helper"
 require "untied-consumer-sync/observer_helper"
 require "untied-consumer-sync/zombificator"
 require "untied-consumer-sync/untied_general_observer"
+require "untied-consumer-sync/backend/base"
 
 module Untied
   module Consumer
@@ -30,10 +30,25 @@ module Untied
         @model_data ||= YAML.load_file(Sync.config.model_data)
       end
 
+      # Initializes Untied Consumer
       def self.init_untied
         Untied::Consumer.configure do |config_untied|
           config_untied.observers = [UntiedGeneralObserver]
         end
+      end
+
+      # Sets the backend that will be used
+      def self.backend=(backend)
+        if backend.is_a? Symbol
+          require "untied-consumer-sync/backend/#{backend}"
+          backend = "#{Sync}::Backend::#{backend.to_s.classify}::ModelHelper".
+            constantize
+        end
+        @@backend = backend
+      end
+
+      def self.backend
+        @@backend
       end
     end
   end

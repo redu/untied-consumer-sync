@@ -60,7 +60,7 @@ module Untied
         # contrário.
         def call_method(method, kind, payload)
           model_data = config.fetch(kind.classify) {|k| raise "Kind #{k} not found in model_data.yml"}
-          model_helper = ModelHelper.new(model_data)
+          model_helper = Sync.backend.new(model_data)
           payload_proccessor = PayloadProccessor.new(model_data)
           new_payload = payload_proccessor.proccess(payload) #Remove dados inuteis
 
@@ -123,7 +123,7 @@ module Untied
           new_payload = payload.clone
           payload_proccessor.dependencies.each do |key, value|
             id = payload[value]
-            aux_helper = ModelHelper.new(config[key.classify])
+            aux_helper = Sync.backend.new(config[key.classify])
             modelo = (aux_helper.find(id) or aux_helper.create_zombie(id))
             new_payload.merge!(value => modelo.id)
           end
