@@ -7,6 +7,7 @@
 
 require 'untied-consumer-sync'
 require 'support/setup_ar_and_schema'
+require 'support/backend_shared_example'
 
 RSpec.configure do |config|
 
