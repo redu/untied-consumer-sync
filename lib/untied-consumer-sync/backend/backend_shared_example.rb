@@ -23,7 +23,10 @@ shared_examples_for 'a untied-consumer-sync backend' do
 
     context 'when user exists' do
       before do
-        User.create(:my_id => 1, :login => 'luke')
+        User.create do |u|
+          u.my_id = 1
+          u.login = 'luke'
+        end
       end
 
       it 'should find object by id' do
@@ -35,7 +38,7 @@ shared_examples_for 'a untied-consumer-sync backend' do
   describe '#create_zombie' do
     it 'should create zombie user' do
       subject.create_zombie(99)
-      User.unscoped.find_by_my_id(99).should_not be_nil
+      User.unscoped.where(:my_id => 99).should exist
     end
   end
 
@@ -44,7 +47,7 @@ shared_examples_for 'a untied-consumer-sync backend' do
       context "when user does not exist yet" do
         it 'should create user' do
           subject.create_model(user_payload)
-          User.find_by_my_id(user_payload['my_id']).should_not be_nil
+          User.where(:my_id => user_payload['my_id']).should exist
         end
       end
 
@@ -55,7 +58,7 @@ shared_examples_for 'a untied-consumer-sync backend' do
 
         it 'should update zombie user' do
           subject.create_model(user_payload)
-          User.find_by_my_id(user_payload['my_id']).should be_valid
+          User.where(:my_id => user_payload['my_id']).first.should be_valid
         end
       end
     end
@@ -65,7 +68,7 @@ shared_examples_for 'a untied-consumer-sync backend' do
     context 'when user does not exist yet' do
       it 'should create user' do
         subject.update_model(user_payload)
-        User.find_by_my_id(user_payload['my_id']).should be_valid
+        User.where(:my_id => user_payload['my_id']).should exist
       end
     end
 
@@ -76,7 +79,7 @@ shared_examples_for 'a untied-consumer-sync backend' do
 
       it 'should update user on database' do
         subject.update_model(user_payload)
-        User.find_by_my_id(user_payload['my_id']).should be_valid
+        User.where(:my_id => user_payload['my_id']).first.should be_valid
       end
     end
   end
@@ -89,7 +92,7 @@ shared_examples_for 'a untied-consumer-sync backend' do
 
       it 'should delete from database' do
         subject.destroy_model(user_payload)
-        User.find_by_my_id(user_payload['my_id']).should be_nil
+        User.where(:my_id => user_payload['my_id']).should_not exist
       end
     end
   end

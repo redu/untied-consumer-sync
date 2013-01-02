@@ -12,7 +12,7 @@ module Untied
             attr_accessible :zombie
 
             # Modelos zombies não devem aparecer em consultas normais.
-            default_scope where("#{self.table_name}.zombie is FALSE")
+            default_scope where(:zombie => false)
 
             after_validation { self.zombie = false if self.errors.empty? }
           end
