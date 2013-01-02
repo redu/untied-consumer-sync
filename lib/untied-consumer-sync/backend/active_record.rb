@@ -6,12 +6,6 @@ module Untied
           class ModelHelper
             include Sync::Backend::Base
 
-            # Public: Lida com a manipulação dos modelos através de payloads.
-            def initialize(model_data)
-              @model = model_data['name'].constantize
-              @model_data = model_data
-            end
-
             # Public: Procura o modelo pelo id.
             #
             # id - Inteiro que indentifica o objeto de acordo a configuração.
