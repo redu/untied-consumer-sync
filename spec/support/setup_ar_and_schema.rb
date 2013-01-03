@@ -14,20 +14,26 @@ module SetupActiveRecord
       t.string :my_id
       t.string :login
       t.string :name
-      t.string :zombie, :default => true
+      t.boolean :zombie, :default => true
       t.timestamps
     end
     create_table :toys, :force => true do |t|
       t.string :my_id
       t.integer :user_id
-      t.string :zombie, :default => true
+      t.boolean :zombie, :default => true
       t.timestamps
     end
   end
 
   # Models
   class ::User < ActiveRecord::Base
+    include Untied::Consumer::Sync::Zombificator::ActsAsZombie
+    attr_accessible :my_id, :login, :name
+
     validates_presence_of :login
   end
-  class ::Toy < ActiveRecord::Base; end
+  class ::Toy < ActiveRecord::Base
+    include Untied::Consumer::Sync::Zombificator::ActsAsZombie
+    attr_accessible :my_id, :user_id
+  end
 end
