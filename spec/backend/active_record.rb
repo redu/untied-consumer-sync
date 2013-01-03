@@ -1,3 +1,5 @@
+require "untied-consumer-sync"
+
 module Untied
   module Consumer
     module Sync

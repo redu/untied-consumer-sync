@@ -40,7 +40,7 @@ module Untied
       # Sets the backend that will be used
       def self.backend=(backend)
         if backend.is_a? Symbol
-          require "untied-consumer-sync/backend/#{backend}"
+          require "backend/#{backend}"
           backend = "#{Sync}::Backend::#{backend.to_s.classify}::ModelHelper".
             constantize
         end

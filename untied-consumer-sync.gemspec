@@ -20,9 +20,9 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'sqlite3'
+  gem.add_development_dependency 'activerecord'
 
   gem.add_runtime_dependency 'untied-consumer', '~> 0.0.5'
-  gem.add_runtime_dependency 'activerecord'
   gem.add_runtime_dependency 'configurable'
 
   if RUBY_VERSION < "1.9"
