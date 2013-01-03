@@ -63,7 +63,7 @@ module Untied::Consumer::Sync
 
       context "with a existent User zombie" do
         before do
-          @user_zombie = User.new(:my_id => 1)
+          @user_zombie = User.unscoped.new(:my_id => 1)
           @user_zombie.save(:validate => false)
         end
         let(:user) { { 'id' => 1, 'login' => 'sexy_jedi_3000',

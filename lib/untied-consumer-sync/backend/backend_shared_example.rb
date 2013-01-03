@@ -39,6 +39,7 @@ shared_examples_for 'a untied-consumer-sync backend' do
     it 'should create zombie user' do
       subject.create_zombie(99)
       User.unscoped.where(:my_id => 99).should exist
+      User.unscoped.where(:my_id => 99).first.should be_zombie
     end
   end
 
@@ -53,7 +54,8 @@ shared_examples_for 'a untied-consumer-sync backend' do
 
       context "when user exists" do
         before do
-          User.new(:my_id => user_payload['my_id']).save(:validate => false)
+          User.unscoped.new(:my_id => user_payload['my_id']).
+            save(:validate => false)
         end
 
         it 'should update zombie user' do
@@ -74,7 +76,8 @@ shared_examples_for 'a untied-consumer-sync backend' do
 
     context 'when user exists' do
       before do
-        User.new(:my_id => user_payload['my_id']).save(:validate => false)
+        User.unscoped.new(:my_id => user_payload['my_id']).
+          save(:validate => false)
       end
 
       it 'should update user on database' do
@@ -87,7 +90,8 @@ shared_examples_for 'a untied-consumer-sync backend' do
   describe '#destroy_model' do
     context 'when user exists' do
       before do
-        User.new(:my_id => user_payload['my_id']).save(:validate => false)
+        User.unscoped.new(:my_id => user_payload['my_id']).
+          save(:validate => false)
       end
 
       it 'should delete from database' do

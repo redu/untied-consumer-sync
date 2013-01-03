@@ -21,7 +21,7 @@ module Untied
           #
           # Retorna o modelo recém criado.
           def create_zombie(id)
-            zombie = @model.new do |z|
+            zombie = @model.unscoped.new do |z|
               z.send("#{ @model_data['mappings']['id'] }=", id)
             end
             zombie.save(:validate => false)
@@ -35,7 +35,8 @@ module Untied
           #
           # Retorna True se a operação for bem sucedida e False no caso contrário.
           def create_model(payload)
-            temp_model = (find(payload[@model_data['mappings']['id']]) or @model.new)
+            temp_model = (find(payload[@model_data['mappings']['id']]) or
+                           @model.unscoped.new)
 
             # Seta os atributos
             payload.each_pair { |key, value| temp_model.send("#{key.to_s}=", value) } if temp_model.zombie
@@ -49,7 +50,8 @@ module Untied
           #
           # Retorna True se a operação for bem sucedida e False no caso contrário.
           def update_model(payload)
-            temp_model = (find(payload[@model_data['mappings']['id']]) or @model.new)
+            temp_model = (find(payload[@model_data['mappings']['id']]) or
+                           @model.unscoped.new)
             payload.each_pair {|key, value| temp_model.send("#{key.to_s}=", value)}
 
             temp_model.save
