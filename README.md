@@ -8,9 +8,13 @@ Process the messages comming from your [Untied::Publisher](https://github.com/re
 
 ## Instalation
 
-Add this line to your Gemfile:
+Untied::Consumer::Sync supports two backends: 
+- [ActiveRecord](https://github.com/redu/untied-consumer-sync-activerecord)
+- [Mongoid](https://github.com/redu/untied-consumer-sync-mongoid) (under development, not on RubyGems yet).
+
+If you want ActiveRecord as backend, add this line to your Gemfile:
 ```ruby
-gem 'untied-consumer-sync'
+gem 'untied-consumer-sync-activerecord'
 ```
 
 Execute bundle:
@@ -20,7 +24,7 @@ $ bundle
 
 Or install it yourself:
 ```
-$ gem install untied-consumer-sync
+$ gem install untied-consumer-sync-activerecord
 ```
 
 ## Usage
@@ -45,8 +49,6 @@ Say to `Untied::Consumer::Sync` where the file is:
 Untied::Consumer::Sync.configure do |config|
   config.model_data = "#{Rails.root}/config/model_data.yml"
 end
-# Sets ActiveRecord as backend
-Untied::Consumer::Sync.backend = :active_record
 ```
 
 Inform the attributes:
