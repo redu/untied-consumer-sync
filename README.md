@@ -1,10 +1,6 @@
-# Untied::Consumer::Sync
+# Untied::Consumer::Sync [![Build Status](https://travis-ci.org/redu/untied-consumer-sync.png?branch=master)](https://travis-ci.org/redu/untied-consumer-sync) [![Dependency Status](https://gemnasium.com/redu/untied-consumer-sync.png)](https://gemnasium.com/redu/untied-consumer-sync)
 
 Process the messages comming from your [Untied::Publisher](https://github.com/redu/untied-publisher) and syncs it directly to the database.
-
-**Build status**
-
-[![Build Status](https://travis-ci.org/redu/untied-consumer-sync.png?branch=master)](https://travis-ci.org/redu/untied-consumer-sync)
 
 ## Instalation
 
